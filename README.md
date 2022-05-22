@@ -35,11 +35,11 @@
 - Search for Artist / Song / Album
 
 ## Screenshots
-![Display Music Player](https://drive.google.com/file/d/1BK0ZCuYLggdi5PnAg3NIDMr7BPBmG_6l/view?usp=sharing)
-![Play Song](https://drive.google.com/file/d/1SLyWTRnFdc87L2zZbP0oT5baSovhePul/view?usp=sharing)
-![Pause Song](https://drive.google.com/file/d/1G4hysuHw3H8mGKW-VkML525JSpEC-sbt/view?usp=sharing)
-![Search Song](https://drive.google.com/file/d/1754hakGC4NjmI-gL3LThEw2Thyq4IV57/view?usp=sharing)
-![Play Search Song](https://drive.google.com/file/d/1t-N0Fj9lr2Xl-FOY4GqmGlBGkyd5YRC2/view?usp=sharing)
+- [Display Music Player](https://drive.google.com/file/d/1BK0ZCuYLggdi5PnAg3NIDMr7BPBmG_6l/view?usp=sharing)
+- [Play Song](https://drive.google.com/file/d/1SLyWTRnFdc87L2zZbP0oT5baSovhePul/view?usp=sharing)
+- [Pause Song](https://drive.google.com/file/d/1G4hysuHw3H8mGKW-VkML525JSpEC-sbt/view?usp=sharing)
+- [Search Song](https://drive.google.com/file/d/1754hakGC4NjmI-gL3LThEw2Thyq4IV57/view?usp=sharing)
+- [Play Search Song](https://drive.google.com/file/d/1t-N0Fj9lr2Xl-FOY4GqmGlBGkyd5YRC2/view?usp=sharing)
 
 ## Build Deploy
 - Build -> Flutter -> Build APK

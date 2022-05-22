@@ -12,11 +12,9 @@
 * [Acknowledgements](#acknowledgements)
 
 ## General Information
-- Provide general information about your project here.
-- What problem does it (intend to) solve?
-- What is the purpose of your project?
-- Why did you undertake it?
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
+- A simple music player app that lets you search by artist and displays the search results on the screen. When a song is selected from the list, the song will start to play.
+- This application will run on android devices at least version 7 or nougat.
+- This application need internet connection to play or search song.
 
 ## Technologies Used
 - Android Studio - version 2021.2.1

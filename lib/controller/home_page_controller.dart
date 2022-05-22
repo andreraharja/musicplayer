@@ -74,26 +74,30 @@ class HomePageController extends GetxController {
       tempIndex = index;
       selectedMusic.value = dataMusic;
 
-      getMaxDuration(dataMusic.trackTimeMillis);
+      getMaxDuration();
       getAudioPosition();
       getAudioComplete(index);
     }
   }
 
-  void getMaxDuration(trackTime) {
-    int shours = Duration(milliseconds: trackTime).inHours;
-    int sminutes = Duration(milliseconds: trackTime).inMinutes;
-    int sseconds = Duration(milliseconds: trackTime).inSeconds;
+  void getMaxDuration() {
+    audioPlayer.onDurationChanged.listen((Duration d) {
+      maxDuration.value = d.inMilliseconds;
 
-    int rhours = shours;
-    int rminutes = sminutes - (shours * 60);
-    int rseconds = sseconds - (sminutes * 60 + shours * 60 * 60);
+      int shours = Duration(milliseconds: maxDuration.value).inHours;
+      int sminutes = Duration(milliseconds: maxDuration.value).inMinutes;
+      int sseconds = Duration(milliseconds: maxDuration.value).inSeconds;
 
-    if (rhours == 0) {
-      maxDurationLabel.value = "$rminutes:$rseconds";
-    } else {
-      maxDurationLabel.value = "$rhours:$rminutes:$rseconds";
-    }
+      int rhours = shours;
+      int rminutes = sminutes - (shours * 60);
+      int rseconds = sseconds - (sminutes * 60 + shours * 60 * 60);
+
+      if (rhours == 0) {
+        maxDurationLabel.value = "$rminutes:$rseconds";
+      } else {
+        maxDurationLabel.value = "$rhours:$rminutes:$rseconds";
+      }
+    });
   }
 
   void getAudioPosition() {

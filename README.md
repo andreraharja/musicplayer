@@ -37,8 +37,11 @@
 - Search for Artist / Song / Album
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
-<!-- If you have screenshots you'd like to share, include them here. -->
+![Display Music Player](./img/VideoCapture_20220522-142535.jpg)
+![Play Song](./img/VideoCapture_20220522-142546.jpg)
+![Pause Song](./img/VideoCapture_20220522-142558.jpg)
+![Search Song](./img/VideoCapture_20220522-142616.jpg)
+![Play Search Song](./img/VideoCapture_20220522-142622.jpg)
 
 ## Build Deploy
 - Build -> Flutter -> Build APK

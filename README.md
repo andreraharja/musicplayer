@@ -35,11 +35,11 @@
 - Search for Artist / Song / Album
 
 ## Screenshots
-![Display Music Player](./img/VideoCapture_20220522-142535.jpg)
-![Play Song](./img/VideoCapture_20220522-142546.jpg)
-![Pause Song](./img/VideoCapture_20220522-142558.jpg)
-![Search Song](./img/VideoCapture_20220522-142616.jpg)
-![Play Search Song](./img/VideoCapture_20220522-142622.jpg)
+![Display Music Player](https://drive.google.com/file/d/1BK0ZCuYLggdi5PnAg3NIDMr7BPBmG_6l/view?usp=sharing)
+![Play Song](https://drive.google.com/file/d/1SLyWTRnFdc87L2zZbP0oT5baSovhePul/view?usp=sharing)
+![Pause Song](https://drive.google.com/file/d/1G4hysuHw3H8mGKW-VkML525JSpEC-sbt/view?usp=sharing)
+![Search Song](https://drive.google.com/file/d/1754hakGC4NjmI-gL3LThEw2Thyq4IV57/view?usp=sharing)
+![Play Search Song](https://drive.google.com/file/d/1t-N0Fj9lr2Xl-FOY4GqmGlBGkyd5YRC2/view?usp=sharing)
 
 ## Build Deploy
 - Build -> Flutter -> Build APK

@@ -41,7 +41,7 @@ class HomePageController extends GetxController {
 
   @override
   void onInit() async {
-    dataMusic.value = await initDataMusic();
+    dataMusic.value = await HomePageApi().initDataMusic();
     resultDataMusic.addAll(dataMusic);
     isPlay.value = List.generate(resultDataMusic.length, (i) => false);
     isLoading(false);
@@ -52,7 +52,7 @@ class HomePageController extends GetxController {
     isLoading(true);
     if (txtSearch.isNotEmpty) {
       List<DataMusic> dataSearchList = [];
-      dataSearchList = await getDataMusic(txtSearch);
+      dataSearchList = await HomePageApi().getDataMusic(txtSearch);
       resultDataMusic.clear();
       resultDataMusic.addAll(dataSearchList);
     } else {

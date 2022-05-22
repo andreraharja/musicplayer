@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:musicplayer/model/home_page_model.dart';
 
+/// init list data music when first time app launch
 Future<List<DataMusic>> initDataMusic() async {
   try {
     http.Response response = await http.get(Uri.parse(
@@ -22,6 +23,7 @@ Future<List<DataMusic>> initDataMusic() async {
   }
 }
 
+/// api for search data music
 Future<List<DataMusic>> getDataMusic(String termSearch) async {
   try {
     http.Response response = await http.get(Uri.parse(

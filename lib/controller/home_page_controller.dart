@@ -41,17 +41,9 @@ class HomePageController extends GetxController {
 
   @override
   void onInit() async {
-
-    ///init list data music from Api iTunes
-    ///dataMusic will use for backup data after user use search feature
     dataMusic.value = await initDataMusic();
-
-    ///store to resultDataMusic, resultDataMusic will use for display in UI
     resultDataMusic.addAll(dataMusic);
-
-    ///generate list boolean for flag each song
     isPlay.value = List.generate(resultDataMusic.length, (i) => false);
-
     isLoading(false);
     super.onInit();
   }
@@ -82,30 +74,26 @@ class HomePageController extends GetxController {
       tempIndex = index;
       selectedMusic.value = dataMusic;
 
-      getMaxDuration();
+      getMaxDuration(dataMusic.trackTimeMillis);
       getAudioPosition();
       getAudioComplete(index);
     }
   }
 
-  void getMaxDuration() {
-    audioPlayer.onDurationChanged.listen((Duration d) {
-      maxDuration.value = d.inMilliseconds;
+  void getMaxDuration(trackTime) {
+    int shours = Duration(milliseconds: trackTime).inHours;
+    int sminutes = Duration(milliseconds: trackTime).inMinutes;
+    int sseconds = Duration(milliseconds: trackTime).inSeconds;
 
-      int shours = Duration(milliseconds: maxDuration.value).inHours;
-      int sminutes = Duration(milliseconds: maxDuration.value).inMinutes;
-      int sseconds = Duration(milliseconds: maxDuration.value).inSeconds;
+    int rhours = shours;
+    int rminutes = sminutes - (shours * 60);
+    int rseconds = sseconds - (sminutes * 60 + shours * 60 * 60);
 
-      int rhours = shours;
-      int rminutes = sminutes - (shours * 60);
-      int rseconds = sseconds - (sminutes * 60 + shours * 60 * 60);
-
-      if (rhours == 0) {
-        maxDurationLabel.value = "$rminutes:$rseconds";
-      } else {
-        maxDurationLabel.value = "$rhours:$rminutes:$rseconds";
-      }
-    });
+    if (rhours == 0) {
+      maxDurationLabel.value = "$rminutes:$rseconds";
+    } else {
+      maxDurationLabel.value = "$rhours:$rminutes:$rseconds";
+    }
   }
 
   void getAudioPosition() {

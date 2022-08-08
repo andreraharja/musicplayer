@@ -5,43 +5,22 @@ import 'package:musicplayer/api/home_page_api.dart';
 import 'package:musicplayer/model/home_page_model.dart';
 
 class HomePageController extends GetxController {
-  ///variable for field search
   TextEditingController searchText = TextEditingController();
-
-  ///variable for save list data music from api
   var dataMusic = List<DataMusic>.empty().obs;
   var resultDataMusic = List<DataMusic>.empty().obs;
-
-  ///variable for selected music
   var selectedMusic = DataMusic().obs;
-
-  ///flag for selected music
   var isPlay = List<bool>.empty().obs;
-
-  ///flag for loading
   var isLoading = true.obs;
-
-  ///flag for show / hide controlWidget
   var isTap = false.obs;
-
-  ///flag for pause / resume music
   var isPause = false.obs;
-
-  ///variable temporary for save index that play before
   var tempIndex = 0;
-
-  ///variable for control duration
-  var maxDuration = 0.obs;
   var currentPosition = 0.obs;
   var currentPositionLabel = "00:00".obs;
-  var maxDurationLabel = "00:00".obs;
-
-  ///initialize library audioplayers
   AudioPlayer audioPlayer = AudioPlayer();
 
   @override
   void onInit() async {
-    dataMusic.value = await HomePageApi().initDataMusic();
+    dataMusic.value = await HomePageApi().getDataMusic('Init', null);
     resultDataMusic.addAll(dataMusic);
     isPlay.value = List.generate(resultDataMusic.length, (i) => false);
     isLoading(false);
@@ -52,7 +31,7 @@ class HomePageController extends GetxController {
     isLoading(true);
     if (txtSearch.isNotEmpty) {
       List<DataMusic> dataSearchList = [];
-      dataSearchList = await HomePageApi().getDataMusic(txtSearch);
+      dataSearchList = await HomePageApi().getDataMusic(null, txtSearch);
       resultDataMusic.clear();
       resultDataMusic.addAll(dataSearchList);
     } else {
@@ -74,35 +53,14 @@ class HomePageController extends GetxController {
       tempIndex = index;
       selectedMusic.value = dataMusic;
 
-      getMaxDuration();
-      getAudioPosition();
+      getPositionDuration();
       getAudioComplete(index);
     }
   }
 
-  void getMaxDuration() {
+  void getPositionDuration() {
     audioPlayer.onDurationChanged.listen((Duration d) {
-      maxDuration.value = d.inMilliseconds;
-
-      int shours = Duration(milliseconds: maxDuration.value).inHours;
-      int sminutes = Duration(milliseconds: maxDuration.value).inMinutes;
-      int sseconds = Duration(milliseconds: maxDuration.value).inSeconds;
-
-      int rhours = shours;
-      int rminutes = sminutes - (shours * 60);
-      int rseconds = sseconds - (sminutes * 60 + shours * 60 * 60);
-
-      if (rhours == 0) {
-        maxDurationLabel.value = "$rminutes:$rseconds";
-      } else {
-        maxDurationLabel.value = "$rhours:$rminutes:$rseconds";
-      }
-    });
-  }
-
-  void getAudioPosition() {
-    audioPlayer.onAudioPositionChanged.listen((Duration p) {
-      currentPosition.value = p.inMilliseconds;
+      currentPosition.value = d.inMilliseconds;
 
       int shours = Duration(milliseconds: currentPosition.value).inHours;
       int sminutes = Duration(milliseconds: currentPosition.value).inMinutes;

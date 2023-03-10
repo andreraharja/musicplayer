@@ -23,48 +23,56 @@ class MusicPlayerButton extends StatelessWidget {
           Obx(() => Text(_musicPlayerController.selectedMusic.value.artistName! +
               ' - ' +
               _musicPlayerController.selectedMusic.value.trackName!)),
-          Row(
-            children: [
-              SizedBox(
-                width: Get.width * 0.75,
-                child: Obx(() => Slider(
-                    activeColor: Colors.blue,
-                    min: 0.0,
-                    max: _musicPlayerController.currentPosition.value.toDouble(),
-                    value: _musicPlayerController.currentPosition.value.toDouble(),
-                    onChanged: (value) {
-                      _musicPlayerController.seekMusic(value);
-                    })),
-              ),
-              Expanded(
-                  child: Text(_musicPlayerController.currentPositionLabel.value +
-                      ' / ' +
-                      _musicPlayerController.currentPositionLabel.value))
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Obx(() => _musicPlayerController.isPause.value
-                  ? IconButton(
-                  icon: const Icon(Icons.play_arrow),
-                  onPressed: () {
-                    _musicPlayerController.resumeMusic();
-                  })
-                  : IconButton(
-                  icon: const Icon(Icons.pause),
-                  onPressed: () {
-                    _musicPlayerController.pauseMusic();
-                  })),
-              IconButton(
-                  icon: const Icon(Icons.stop),
-                  onPressed: () {
-                    _musicPlayerController.stopMusic();
-                  }),
-            ],
-          ),
+          timerPosition(),
+          buttonControl(),
         ],
       ),
     );
+  }
+
+  Widget timerPosition() {
+    return Row(
+      children: [
+        SizedBox(
+          width: Get.width * 0.75,
+          child: Obx(() => Slider(
+              activeColor: Colors.blue,
+              min: 0.0,
+              max: _musicPlayerController.currentPosition.value.toDouble(),
+              value: _musicPlayerController.currentPosition.value.toDouble(),
+              onChanged: (value) {
+                _musicPlayerController.seekMusic(value);
+              })),
+        ),
+        Expanded(
+            child: Text(_musicPlayerController.currentPositionLabel.value +
+                ' / ' +
+                _musicPlayerController.currentPositionLabel.value))
+      ],
+    );
+  }
+
+  Widget buttonControl() {
+    return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Obx(() => _musicPlayerController.isPause.value
+                ? IconButton(
+                icon: const Icon(Icons.play_arrow),
+                onPressed: () {
+                  _musicPlayerController.resumeMusic();
+                })
+                : IconButton(
+                icon: const Icon(Icons.pause),
+                onPressed: () {
+                  _musicPlayerController.pauseMusic();
+                })),
+            IconButton(
+                icon: const Icon(Icons.stop),
+                onPressed: () {
+                  _musicPlayerController.stopMusic();
+                }),
+          ],
+        );
   }
 }

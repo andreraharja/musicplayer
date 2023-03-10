@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../controller/music_player_controller.dart';
+import 'package:musicplayer/controller/music_player_controller.dart';
 
 class MusicPlayerSearch extends StatelessWidget {
   const MusicPlayerSearch({

@@ -1,10 +1,9 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:musicplayer/api/home_page_api.dart';
-import 'package:musicplayer/model/home_page_model.dart';
+import 'package:musicplayer/data/music_player_model.dart';
 
-class HomePageController extends GetxController {
+class MusicPlayerController extends GetxController {
   TextEditingController searchText = TextEditingController();
   var dataMusic = List<DataMusic>.empty().obs;
   var resultDataMusic = List<DataMusic>.empty().obs;
@@ -20,7 +19,7 @@ class HomePageController extends GetxController {
 
   @override
   void onInit() async {
-    dataMusic.value = await HomePageApi().getDataMusic('Init', null);
+    dataMusic.value = await DataMusic().getDataMusic('Init', null);
     resultDataMusic.addAll(dataMusic);
     isPlay.value = List.generate(resultDataMusic.length, (i) => false);
     isLoading(false);
@@ -31,7 +30,7 @@ class HomePageController extends GetxController {
     isLoading(true);
     if (txtSearch.isNotEmpty) {
       List<DataMusic> dataSearchList = [];
-      dataSearchList = await HomePageApi().getDataMusic(null, txtSearch);
+      dataSearchList = await DataMusic().getDataMusic(null, txtSearch);
       resultDataMusic.clear();
       resultDataMusic.addAll(dataSearchList);
     } else {

@@ -1,4 +1,11 @@
-class DataMusic {
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+abstract class ItunesMusicPlayer {
+  Future<List<DataMusic>> getDataMusic(String? type, String? termSearch);
+}
+
+class DataMusic implements ItunesMusicPlayer {
   String? wrapperType;
   String? kind;
   int? artistId;
@@ -33,36 +40,36 @@ class DataMusic {
 
   DataMusic(
       {wrapperType,
-        kind,
-        artistId,
-        collectionId,
-        trackId,
-        artistName,
-        collectionName,
-        trackName,
-        collectionCensoredName,
-        trackCensoredName,
-        artistViewUrl,
-        collectionViewUrl,
-        trackViewUrl,
-        previewUrl,
-        artworkUrl30,
-        artworkUrl60,
-        artworkUrl100,
-        collectionPrice,
-        trackPrice,
-        releaseDate,
-        collectionExplicitness,
-        trackExplicitness,
-        discCount,
-        discNumber,
-        trackCount,
-        trackNumber,
-        trackTimeMillis,
-        country,
-        currency,
-        primaryGenreName,
-        isStreamable});
+      kind,
+      artistId,
+      collectionId,
+      trackId,
+      artistName,
+      collectionName,
+      trackName,
+      collectionCensoredName,
+      trackCensoredName,
+      artistViewUrl,
+      collectionViewUrl,
+      trackViewUrl,
+      previewUrl,
+      artworkUrl30,
+      artworkUrl60,
+      artworkUrl100,
+      collectionPrice,
+      trackPrice,
+      releaseDate,
+      collectionExplicitness,
+      trackExplicitness,
+      discCount,
+      discNumber,
+      trackCount,
+      trackNumber,
+      trackTimeMillis,
+      country,
+      currency,
+      primaryGenreName,
+      isStreamable});
 
   DataMusic.fromJson(Map<String, dynamic> json) {
     wrapperType = json['wrapperType'];
@@ -132,5 +139,35 @@ class DataMusic {
     data['primaryGenreName'] = primaryGenreName;
     data['isStreamable'] = isStreamable;
     return data;
+  }
+
+  @override
+  Future<List<DataMusic>> getDataMusic(String? type, String? termSearch) async {
+    try {
+      String urlMusic = "";
+      if (type == 'Init') {
+        urlMusic =
+        'https://itunes.apple.com/search?term=a&media=music&limit=50';
+      } else {
+        urlMusic = 'https://itunes.apple.com/search?term=' +
+            termSearch! +
+            '&media=music&limit=50';
+      }
+
+      http.Response response = await http.get(Uri.parse(urlMusic));
+      final int statusCode = response.statusCode;
+      if (statusCode == 200) {
+        final jsonData = json.decode(utf8.decode(response.bodyBytes));
+        List<DataMusic> dataResult = [];
+        jsonData['results']
+            .map((i) => dataResult.add(DataMusic.fromJson(i)))
+            .toList();
+        return dataResult;
+      } else {
+        return [];
+      }
+    } catch (e) {
+      return [];
+    }
   }
 }

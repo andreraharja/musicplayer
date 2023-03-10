@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:musicplayer/view/home_page.dart';
+import 'package:musicplayer/view/music_player.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           appBarTheme: const AppBarTheme(color: Colors.blue)),
       debugShowCheckedModeBanner: false,
       title: 'Music Player',
-      home: HomePage(),
+      home: MusicPlayer(),
     );
   }
 }

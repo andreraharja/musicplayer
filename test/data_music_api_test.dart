@@ -2,8 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-import 'package:musicplayer/api/data_music_api.dart';
-import 'package:musicplayer/model/data_music_model.dart';
+import 'package:musicplayer/data/test_model.dart';
 import 'data_music_api_test.mocks.dart';
 
 @GenerateMocks([http.Client])
@@ -49,7 +48,9 @@ void main() {
           ]
       }''', 200));
     });
-    List<DataMusic> dataMusic = await HomePageApi().getDataMusicTest("Init", null, client);
-    expect(dataMusic[0], equals(DataMusic(artistId: 318754656, artistName: "BIGBANG")));
+    List<TestDataMusic> dataMusic =
+        await TestDataMusic().testDataMusic("Init", null, client);
+    expect(dataMusic[0],
+        equals(TestDataMusic(artistId: 318754656, artistName: "BIGBANG")));
   });
 }

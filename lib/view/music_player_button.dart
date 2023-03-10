@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controller/home_page_controller.dart';
+import '../controller/music_player_controller.dart';
 
-class ControlWidget extends StatelessWidget {
-  const ControlWidget({
+class MusicPlayerButton extends StatelessWidget {
+  const MusicPlayerButton({
     Key? key,
-    required HomePageController homePageController,
-  }) : _homePageController = homePageController, super(key: key);
+    required MusicPlayerController musicPlayerController,
+  }) : _musicPlayerController = musicPlayerController, super(key: key);
 
-  final HomePageController _homePageController;
+  final MusicPlayerController _musicPlayerController;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +20,9 @@ class ControlWidget extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          Obx(() => Text(_homePageController.selectedMusic.value.artistName! +
+          Obx(() => Text(_musicPlayerController.selectedMusic.value.artistName! +
               ' - ' +
-              _homePageController.selectedMusic.value.trackName!)),
+              _musicPlayerController.selectedMusic.value.trackName!)),
           Row(
             children: [
               SizedBox(
@@ -30,36 +30,36 @@ class ControlWidget extends StatelessWidget {
                 child: Obx(() => Slider(
                     activeColor: Colors.blue,
                     min: 0.0,
-                    max: _homePageController.currentPosition.value.toDouble(),
-                    value: _homePageController.currentPosition.value.toDouble(),
+                    max: _musicPlayerController.currentPosition.value.toDouble(),
+                    value: _musicPlayerController.currentPosition.value.toDouble(),
                     onChanged: (value) {
-                      _homePageController.seekMusic(value);
+                      _musicPlayerController.seekMusic(value);
                     })),
               ),
               Expanded(
-                  child: Text(_homePageController.currentPositionLabel.value +
+                  child: Text(_musicPlayerController.currentPositionLabel.value +
                       ' / ' +
-                      _homePageController.currentPositionLabel.value))
+                      _musicPlayerController.currentPositionLabel.value))
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Obx(() => _homePageController.isPause.value
+              Obx(() => _musicPlayerController.isPause.value
                   ? IconButton(
                   icon: const Icon(Icons.play_arrow),
                   onPressed: () {
-                    _homePageController.resumeMusic();
+                    _musicPlayerController.resumeMusic();
                   })
                   : IconButton(
                   icon: const Icon(Icons.pause),
                   onPressed: () {
-                    _homePageController.pauseMusic();
+                    _musicPlayerController.pauseMusic();
                   })),
               IconButton(
                   icon: const Icon(Icons.stop),
                   onPressed: () {
-                    _homePageController.stopMusic();
+                    _musicPlayerController.stopMusic();
                   }),
             ],
           ),

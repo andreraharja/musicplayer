@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:musicplayer/model/data_music_model.dart';
+import 'package:musicplayer/data/test_model.dart';
 
 void main() {
   group("Data Music Test", () {
-    DataMusic dataMusic = DataMusic();
+    TestDataMusic dataMusic = TestDataMusic();
 
     test("Data Music has an artist id with type int", () {
       expect(dataMusic.artistId, isA<int>());
@@ -20,9 +20,9 @@ void main() {
   });
 
   group("Data Music Test", () {
-    DataMusic dataMusic1 = DataMusic(artistId: 1);
-    DataMusic dataMusic2 = DataMusic(artistName: "BIGBANG");
-    DataMusic dataMusic3 = DataMusic(artistId: 1, artistName: "BIGBANG");
+    TestDataMusic dataMusic1 = TestDataMusic(artistId: 1);
+    TestDataMusic dataMusic2 = TestDataMusic(artistName: "BIGBANG");
+    TestDataMusic dataMusic3 = TestDataMusic(artistId: 1, artistName: "BIGBANG");
 
     test("Data Music single parameter id", () {
       expect(dataMusic1.artistId, equals(1));

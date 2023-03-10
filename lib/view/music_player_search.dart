@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 
-import '../controller/home_page_controller.dart';
+import '../controller/music_player_controller.dart';
 
-class SearchWidget extends StatelessWidget {
-  const SearchWidget({
+class MusicPlayerSearch extends StatelessWidget {
+  const MusicPlayerSearch({
     Key? key,
-    required HomePageController homePageController,
-  }) : _homePageController = homePageController, super(key: key);
+    required MusicPlayerController musicPlayerController,
+  })  : _musicPlayerController = musicPlayerController,
+        super(key: key);
 
-  final HomePageController _homePageController;
+  final MusicPlayerController _musicPlayerController;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
         onChanged: (value) {
-          _homePageController.filterSearchResult(value);
+          _musicPlayerController.filterSearchResult(value);
         },
-        controller: _homePageController.searchText,
+        controller: _musicPlayerController.searchText,
         decoration: const InputDecoration(
             labelText: "Search",
             hintText: "Search",
